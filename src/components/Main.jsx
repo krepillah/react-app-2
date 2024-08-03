@@ -3,6 +3,7 @@ import { API_KEY, API_URL } from "../config";
 import Preloader from "./Preloader";
 import ItemsList from "./ItemsList";
 import Cart from "./Cart";
+import CartList from "./CartList";
 
 export default function Main(){
     const [items, setItems] = useState([]);
@@ -52,18 +53,38 @@ export default function Main(){
         
     }
 
+    const removeFromBasket = (itemId) => {
+        const newOrder = order.filter((el) => el.mainId !== itemId);
+        setOrder(newOrder);
+    }
+
+    const decreaseQuantity = (itemId) => {
+        const newOrder = order.map((el) => {
+            if(el.mainId === itemId){
+                const newQuantity = el.quantity - 1;
+                return {
+                    ...el,
+                    quantity: (newQuantity >= 1) ? newQuantity : 1
+                }
+            }else{
+                return el;
+            }
+        });
+        setOrder(newOrder);
+    }
+
     const showCart = () => {
         setCartShown(!cartShown);
     }
 
     return(
         <div className="content">
-            <main>
+            <main style={{marginRight: (cartShown) ? "400px" : "0"}}>
                 <Cart quantity={order.length} showCart={showCart}/>
                 {loading ? <Preloader/> : <ItemsList items={items} addToBasket={addToBasket}/>}
             </main>
             <aside style={{display: (cartShown) ? "block" : "none"}}>
-                123
+                {cartShown && <CartList order={order} removeFromBasket={removeFromBasket} addToBasket={addToBasket} decreaseQuantity={decreaseQuantity}/>}
             </aside>
         </div>
     )

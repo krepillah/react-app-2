@@ -23,7 +23,10 @@ export default function Item(props){
                         {price.finalPrice}
                         <img src="/icons/vbucks-black.png" alt="vbucks-icon"/>
                     </span>
-                    <button className="btn" onClick={() => addToBasket({mainId, displayName, price})}>Купить</button>
+                    <button 
+                        className="btn" 
+                        onClick={() => addToBasket({mainId, displayName, price, displayAssets})}
+                    >Купить</button>
                 </div>
                 
             </div>
