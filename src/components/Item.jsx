@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { ShopContext } from "../context";
+
 export default function Item(props){
+
     const { 
         mainId, 
         displayName, 
