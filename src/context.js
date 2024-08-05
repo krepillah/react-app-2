@@ -8,7 +8,10 @@ const initialState = {
     loading: true,
     order: [],
     cartShown: false,
+    filterShown: false,
     alertName: '',
+    filter: 'all',
+    countShownItems: 20,
 }
 
 export const ContextProvider = ({children}) => {
@@ -37,6 +40,18 @@ export const ContextProvider = ({children}) => {
     value.closeAlert = () => {
         dispatch({ type: 'CLOSE_ALERT' });
     };
+
+    value.setFilter = (value) => {
+        dispatch({ type: "SET_FILTER" ,  payload: {type: value}});
+    };
+
+    value.setCountShownItems = (value) => {
+        dispatch({ type: "SET_COUNT_SHOWN_ITEMS", payload: {value: value}});
+    };
+
+    value.showFilter = () => {
+        dispatch({ type: "SHOW_FILTER"});
+    }
 
     return (
         <ShopContext.Provider value={value}>{children}</ShopContext.Provider>

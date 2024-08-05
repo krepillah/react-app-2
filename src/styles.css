@@ -24,6 +24,7 @@ nav {
   position: fixed;
   z-index: 10;
   top: 0;
+  user-select:none
 }
 
 nav .brand-logo{
@@ -63,7 +64,6 @@ aside{
 .items {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
-  grid-template-rows: repeat(400px);
   gap: 20px;
   justify-content: center;
 }
@@ -169,11 +169,17 @@ Legendary{
   top: 15px;
   right: 150px;
   z-index: 11;
+  user-select:none
 }
 
 .cart-header-block img{
-  height: 44px;
+  height: 49px;
   margin-top: -7px;
+  cursor: pointer;
+}
+
+.cart-header-block img:first-child{
+  margin-right: 10px;
 }
 
 .cart-quantity{
@@ -264,4 +270,101 @@ Legendary{
 
 #toast-container{
   top: 3rem !important;
+}
+
+button{
+  background-color: black;
+}
+
+.add-to-cart-button {
+  background-color: black;
+  transition: background-color 1s ease-in-out;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 20px;
+  cursor: pointer;
+  border: none;
+}
+
+.add-to-cart-button:active {
+  background-color: #b9b9b9;
+  transition: none; 
+}
+
+@keyframes revert-color {
+  from {
+    background-color: #b9b9b9;
+  }
+  to {
+    background-color: black;
+  }
+}
+
+.add-to-cart-button.animate-revert {
+  animation: revert-color 1.5s ease-in-out forwards;
+}
+
+.filter-block select{
+  display: block;
+}
+
+.filter-block{
+  position: fixed;
+  z-index: 1;
+  width: 340px;
+  top: 64px;
+  background-color: white;
+  padding: 30px 20px 20px 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  right: 30px;
+  border: 1px solid #bbb;
+  border-top: 0;
+}
+
+.type-block{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.type-block label{
+  white-space: nowrap;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #232222;
+}
+
+.type-block select{
+  border: 1px solid #bbb;
+  padding: 5px 15px;
+  height: auto;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.type-block select:focus-visible{
+  outline: none;
+}
+
+.type-block select:focus{
+  border-color: #4564ec9e;
+  outline: none;
+}
+
+.filter-title{
+  color: var(--blue);
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.footer-copyright{
+  background: var(--blue) !important;
+}
+
+.preloader-block{
+  position: absolute;
+  transform: translate(50%);
+  left: 50%;
 }

@@ -30,8 +30,15 @@ export default function Item(props){
                         <img src="/icons/vbucks-black.png" alt="vbucks-icon"/>
                     </span>
                     <button 
-                        className="btn" 
-                        onClick={() => addToBasket({mainId, displayName, price, displayAssets})}
+                        className="add-to-cart-button" 
+                        onClick={(e) => {
+                            addToBasket({mainId, displayName, price, displayAssets});
+                            const button = e.currentTarget;
+                            button.classList.remove('animate-revert');
+                            setTimeout(() => {
+                                button.classList.add('animate-revert');
+                            }, 0);
+                        }}
                     >Купить</button>
                 </div>
                 

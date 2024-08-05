@@ -11,13 +11,13 @@ export default function Footer() {
                 <h5 className="white-text">Ссылки на соцсети</h5>
                 <ul>
                     <li><a className="grey-text text-lighten-3" href="#!">Инстаграм</a></li>
-                    <li><a className="grey-text text-lighten-3" href="#!">Гитхаб</a></li>
+                    <li><a className="grey-text text-lighten-3" href="https://github.com/krepillah!">Гитхаб</a></li>
                     <li><a className="grey-text text-lighten-3" href="#!">Телеграм</a></li>
                 </ul>
                 </div>
             </div>
             </div>
-            <div className="footer-copyright deep-orange">
+            <div className="footer-copyright">
             <div className="container">
             © {new Date().getFullYear()} Copyright Text
             <a className="grey-text text-lighten-4 right" href="#!">Больше о нас</a>

@@ -64,6 +64,21 @@ export function reducer(state, {type, payload}) {
                 ...state,
                 alertName: '',
             };
+        case "SET_FILTER":
+            return {
+                ...state,
+                filter: payload.type,
+            };
+        case "SET_COUNT_SHOWN_ITEMS":
+            return {
+                ...state,
+                countShownItems: payload.value,
+            };
+        case "SHOW_FILTER":
+            return {
+                ...state,
+                filterShown: !state.filterShown,
+            }
         default:
             return state;
     }

@@ -3,12 +3,13 @@ import { ShopContext } from "../context";
 
 export default function Cart(props){
 
-    const { order, showCart } = useContext(ShopContext);
+    const { order, showCart, showFilter } = useContext(ShopContext);
     const quantity = order.length;
 
     return (
-        <div className="cart-header-block" onClick={showCart}>
-            <img src="/icons/shopping-bag-white.png" alt="cart-image" /> 
+        <div className="cart-header-block">
+            <img src="/icons/setting.png" alt="settings icon" onClick={showFilter}/>
+            <img src="/icons/shopping-bag-white.png" alt="cart icon" onClick={showCart}/> 
             {(quantity) ? <span className="cart-quantity">{quantity}</span> : ""}
         </div>
     )
