@@ -261,3 +261,7 @@ Legendary{
   padding: 2px 5px;
   cursor: pointer;
 }
+
+#toast-container{
+  top: 3rem !important;
+}

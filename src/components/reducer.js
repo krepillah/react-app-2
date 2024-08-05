@@ -1,37 +1,43 @@
 export function reducer(state, {type, payload}) {
     switch(type){
+        case "SET_ITEMS":
+            return {
+                ...state,
+                items: payload || [],
+                loading: false,
+            };
         case "ADD_TO_BASKET": {
-            const itemCheck = state.order.findIndex((orderElement) => orderElement.mainId === payload.mainId);
+            const itemIndex = state.order.findIndex((orderItem) => orderItem.mainId === payload.mainId);
 
             let newOrder = null;
-            if(itemCheck < 0){
+            if(itemIndex < 0){
                 const newItem = {
                     ...payload, 
                     quantity: 1,
                 };
                 newOrder = [...state.order, newItem]
             } else{
-                newOrder = state.order.map((orderElement, index) => {
-                    if(index === itemCheck){
+                newOrder = state.order.map((orderItem, index) => {
+                    if(index === itemIndex){
                         return{
-                            ...orderElement,
-                            quantity: orderElement.quantity + 1,
+                            ...orderItem,
+                            quantity: orderItem.quantity + 1,
                         };
                     } else{
-                        return orderElement;
+                        return orderItem;
                     }
                 });
-
-                return {
-                    ...state,
-                    order: newOrder
-                }
             }
-        }
+            return {
+                ...state,
+                order: newOrder,
+                alertName: payload.displayName,
+            }
+        };
         case "REMOVE_FROM_BASKET":
             return {
                 ...state,
-                order: state.order.filter((el) => el.mainId !== payload.id)
+                order: state.order.filter((el) => el.mainId !== payload.id),
             };
         case "DECREASE_QUANTITY":
             return {
@@ -47,12 +53,17 @@ export function reducer(state, {type, payload}) {
                         return el;
                     }
                 }),
-            }
-        case "SHOW_BASKET":
+            };
+        case "SHOW_CART":
             return {
                 ...state,
                 cartShown: !state.cartShown,
-            }
+            };
+        case 'CLOSE_ALERT':
+            return {
+                ...state,
+                alertName: '',
+            };
         default:
             return state;
     }

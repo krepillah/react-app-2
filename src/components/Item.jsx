@@ -10,8 +10,10 @@ export default function Item(props){
         price, 
         rarity, 
         displayAssets, 
-        addToBasket = Function.prototype,
     } = props;
+
+    const {addToBasket} = useContext(ShopContext);
+
     return(
         <div id={mainId} className={"item " + rarity.id}>
             <div className="image-block">
